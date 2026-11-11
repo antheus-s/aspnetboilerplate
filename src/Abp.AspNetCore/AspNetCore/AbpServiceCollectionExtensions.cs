@@ -13,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Abp.AspNetCore.Mvc.Providers;
 using Abp.AspNetCore.Webhook;
+using Abp.Webhooks;
 using Abp.Auditing;
 using Abp.Domain.Uow;
 using Abp.Json.SystemTextJson;
@@ -133,7 +134,9 @@ public static class AbpServiceCollectionExtensions
             )
         );
 
-        services.AddHttpClient(AspNetCoreWebhookSender.WebhookSenderHttpClientName);
+        services.AddHttpClient(AspNetCoreWebhookSender.WebhookSenderHttpClientName)
+            .ConfigurePrimaryHttpMessageHandler(serviceProvider =>
+                WebhookHttpMessageHandlerFactory.Create(serviceProvider.GetRequiredService<IWebhooksConfiguration>()));
     }
 
     private static AbpBootstrapper AddAbpBootstrapper<TStartupModule>(IServiceCollection services,

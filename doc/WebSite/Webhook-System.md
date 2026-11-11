@@ -301,6 +301,10 @@ Webhook configurations:
             <td>MaxConsecutiveFailCountBeforeDeactivateSubscription<span style="font-style: italic;">(int)</span></td>
         	<td>Max consecutive fail count to deactivate subscription if <code>IsAutomaticSubscriptionDeactivationEnabled</code> is true</td>
         </tr>
+        <tr>
+            <td>IsPrivateNetworkProtectionEnabled<span style="font-style: italic;">(bool)</span></td>
+        	<td>If enabled, webhooks are not sent to loopback, private, link-local or other non-public addresses, which prevents subscribers from reaching the internal network of the server (SSRF). The resolved address of every connection is checked, including redirects. When enabled, webhook requests do not use a proxy. Default: <code>true</code></td>
+        </tr>
     </tbody>
 </table>
 

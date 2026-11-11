@@ -110,7 +110,7 @@ namespace Abp.Webhooks
 
         protected virtual async Task<(bool isSucceed, HttpStatusCode statusCode, string content)> SendHttpRequest(HttpRequestMessage request)
         {
-            using (var client = new HttpClient
+            using (var client = new HttpClient(WebhookHttpMessageHandlerFactory.Create(_webhooksConfiguration))
             {
                 Timeout = _webhooksConfiguration.TimeoutDuration
             })

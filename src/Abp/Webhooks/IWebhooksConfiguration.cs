@@ -37,5 +37,12 @@ namespace Abp.Webhooks
         /// If you enable <see cref="IsAutomaticSubscriptionDeactivationEnabled"/>, subscriptions will be automatically disabled if they fails <see cref="MaxConsecutiveFailCountBeforeDeactivateSubscription"/> times consecutively.
         /// </summary>
         int MaxConsecutiveFailCountBeforeDeactivateSubscription { get; set; }
+
+        /// <summary>
+        /// If enabled, webhooks are not sent to loopback, private, link-local or other non-public addresses.
+        /// This prevents subscribers from using webhooks to reach the internal network of the server (SSRF).
+        /// When enabled, webhook requests do not use a proxy. Default: true.
+        /// </summary>
+        bool IsPrivateNetworkProtectionEnabled { get; set; }
     }
 }

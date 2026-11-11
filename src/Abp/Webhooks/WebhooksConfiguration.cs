@@ -18,6 +18,8 @@ namespace Abp.Webhooks
 
         public int MaxConsecutiveFailCountBeforeDeactivateSubscription { get; set; }
 
+        public bool IsPrivateNetworkProtectionEnabled { get; set; } = true;
+
         public WebhooksConfiguration()
         {
             Providers = new TypeList<WebhookDefinitionProvider>();
